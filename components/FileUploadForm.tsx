@@ -28,7 +28,6 @@ export default function FileUploadForm({
 
   const [folderModalOpen, setFolderModalOpen] = useState(false);
   const [folderName, setFolderName] = useState("");
-  const [creatingFolder, setCreatingFolder] = useState(false);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -107,8 +106,6 @@ export default function FileUploadForm({
       showCustomToast("error", "Please enter a valid folder name.");
       return;
     }
-
-    setCreatingFolder(true);
     try {
       await axios.post("/api/folder-create", {
         name: folderName.trim(),
@@ -122,9 +119,7 @@ export default function FileUploadForm({
     } catch (error) {
       console.error("Error creating folder:", error);
       showCustomToast("error", "We couldn't create the folder. Please try again.");
-    } finally {
-      setCreatingFolder(false);
-    }
+    } 
   };
 
   return (

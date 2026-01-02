@@ -24,8 +24,10 @@ export default function DashboardContent({ userId, userName }: DashboardContentP
 
     // Sync active tab with URL param
     useEffect(() => {
-        setActiveTab(tabParam === "profile" ? "profile" : "files");
+        if (tabParam === "profile") setActiveTab("profile");
+        else setActiveTab("files");
     }, [tabParam]);
+
 
     const handleFileUploadSuccess = useCallback(() => {
         setRefreshTrigger((prev) => prev + 1);

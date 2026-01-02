@@ -2,8 +2,9 @@ import { Button } from "@heroui/button";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Link from "next/link";
 import { Card, CardBody } from "@heroui/card";
-import { CloudUpload, Shield, Folder, Image as ImageIcon, ArrowRight, InstagramIcon, TwitterIcon, GithubIcon, Linkedin, } from "lucide-react";
+import { CloudUpload, Shield, Folder, Image as ArrowRight, InstagramIcon, TwitterIcon, GithubIcon, Linkedin, } from "lucide-react";
 import Navbar from "@/components/Navbar";
+import Image from "next/image";
 
 export default async function Home() {
     await new Promise(res => setTimeout(res, 3000))
@@ -55,7 +56,7 @@ export default async function Home() {
 
                     <div className="flex justify-center">
                             <div className="inset-0 flex items-center justify-center">
-                                <img src="./one.png" alt="two" width={400} className=" shadow-md" />
+                                <Image src="./one.png" alt="two" width={400} className=" shadow-md" />
                             </div>
                     </div>
                 </div>
@@ -117,7 +118,7 @@ export default async function Home() {
                         <SignedOut>
                             <Link href="/sign-up">
                                 <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white shadow transition-all" endContent={<ArrowRight className="h-4 w-4" />}>
-                                    Let's Go
+                                    Let&apos;s Go
                                 </Button>
                             </Link>
                         </SignedOut>

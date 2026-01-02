@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import { Folder, Star, Trash, X, ExternalLink } from "lucide-react";
 import {
   Table,
@@ -34,7 +34,6 @@ interface FileListProps {
 
 export default function FileList({
   userId,
-  refreshTrigger = 0,
   onFolderChange,
 }: FileListProps) {
   const [files, setFiles] = useState<FileType[]>([]);
@@ -50,7 +49,7 @@ export default function FileList({
   const [selectedFile, setSelectedFile] = useState<FileType | null>(null);
 
   // Fetch files
-  const fetchFiles = async () => {
+  const fetchFiles = useCallback(async () => {
     setLoading(true);
     try {
       let url = `/api/files?userId=${userId}`;
@@ -64,11 +63,11 @@ export default function FileList({
     } finally {
       setLoading(false);
     }
-  };
+  }, [userId, currentFolder]);
 
   useEffect(() => {
     fetchFiles();
-  }, [userId, refreshTrigger, currentFolder]);
+  },[fetchFiles]);
 
   const filteredFiles = useMemo(() => {
     switch (activeTab) {
@@ -124,8 +123,6 @@ export default function FileList({
         )
       );
 
-      // Show toast
-      const file = files.find((f) => f.id === fileId);
       showCustomToast("working", responseData.isTrash ? "Moved to Trash" : "Restored from Trash");
     } catch (error) {
       console.error("Error trashing file:", error);

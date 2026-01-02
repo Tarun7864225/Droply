@@ -1,6 +1,6 @@
 "use client";
 
-import { Star, Trash, X, ArrowUpFromLine, Download } from "lucide-react";
+import { Star, Trash, ArrowUpFromLine, Download } from "lucide-react";
 import { Button } from "@heroui/button";
 import type { File as FileType } from "@/lib/db/schema";
 

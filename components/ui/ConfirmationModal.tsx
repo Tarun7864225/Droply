@@ -30,7 +30,6 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
   title,
   description,
   icon: Icon,
-  iconColor = "text-danger",
   confirmText = "Confirm",
   cancelText = "Cancel",
   confirmColor = "danger",
