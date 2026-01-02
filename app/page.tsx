@@ -56,7 +56,7 @@ export default async function Home() {
 
                     <div className="flex justify-center">
                             <div className="inset-0 flex items-center justify-center">
-                                <Image src="./one.png" alt="two" width={400} className=" shadow-md" />
+                                <Image src="/one.png" alt="two" height={1000} width={400} className=" shadow-md" />
                             </div>
                     </div>
                 </div>
@@ -117,7 +117,7 @@ export default async function Home() {
                     <div className="flex flex-wrap justify-center gap-4">
                         <SignedOut>
                             <Link href="/sign-up">
-                                <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white shadow transition-all" endContent={<ArrowRight className="h-4 w-4" />}>
+                                <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white shadow transition-all">
                                     Let&apos;s Go
                                 </Button>
                             </Link>
