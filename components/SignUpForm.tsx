@@ -59,11 +59,10 @@ export default function SignUpForm() {
             });
 
             setVerifying(true);
-        } catch (error: any) {
-            setAuthError(
-                error.errors?.[0]?.message ||
-                    "An error occurred during sign-up. Please try again."
-            );
+
+        } catch (error: unknown) {
+            const message = typeof error === "object" && error !== null && "errors" in error && Array.isArray((error as { errors?: { message?: string }[] }).errors)? (error as { errors: { message?: string }[] }).errors[0]?.message: undefined;
+            setAuthError(message || "An error occurred during sign-in. Please try again.");
         } finally {
             setIsSubmitting(false);
         }
@@ -84,8 +83,9 @@ export default function SignUpForm() {
             } else {
                 setVerificationError("Verification could not be completed. Please try again.");
             }
-        } catch (error: any) {
-            setVerificationError(error.errors?.[0]?.message ||"An error occurred during verification. Please try again.");
+        } catch (error: unknown) {
+            const message = typeof error === "object" && error !== null && "errors" in error && Array.isArray((error as { errors?: { message?: string }[] }).errors)? (error as { errors: { message?: string }[] }).errors[0]?.message: undefined;
+            setAuthError(message || "An error occurred during sign-in. Please try again.");
         } finally {
             setIsSubmitting(false);
         }

@@ -52,11 +52,9 @@ export default function SignInForm() {
             } else {
                 setAuthError("Sign-in could not be completed. Please try again.");
             }
-        } catch (error: any) {
-            setAuthError(
-                error.errors?.[0]?.message ||
-                    "An error occurred during sign-in. Please try again."
-            );
+        } catch (error: unknown) {
+            const message = typeof error === "object" && error !== null && "errors" in error && Array.isArray((error as { errors?: { message?: string }[] }).errors) ? (error as { errors: { message?: string }[] }).errors[0]?.message: undefined;
+            setAuthError(message || "An error occurred during sign-in. Please try again.");
         } finally {
             setIsSubmitting(false);
         }

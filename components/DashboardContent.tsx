@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 import { Card, CardBody, CardHeader } from "@heroui/card";
 import { Tabs, Tab } from "@heroui/tabs";
 import { FileUp, FileText, User } from "lucide-react";
 import FileUploadForm from "@/components/FileUploadForm";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import FileList from "./FileList";
 import UserProfile from "./UserProfile";
 
@@ -17,17 +17,12 @@ interface DashboardContentProps {
 export default function DashboardContent({ userId, userName }: DashboardContentProps) {
     const searchParams = useSearchParams();
     const tabParam = searchParams.get("tab");
+    const router = useRouter();
 
-    const [activeTab, setActiveTab] = useState<string>("files");
     const [refreshTrigger, setRefreshTrigger] = useState(0);
     const [currentFolder, setCurrentFolder] = useState<string | null>(null);
 
-    // Sync active tab with URL param
-    useEffect(() => {
-        if (tabParam === "profile") setActiveTab("profile");
-        else setActiveTab("files");
-    }, [tabParam]);
-
+    const activeTab = tabParam === "profile" ? "profile" : "files";
 
     const handleFileUploadSuccess = useCallback(() => {
         setRefreshTrigger((prev) => prev + 1);
@@ -64,7 +59,7 @@ export default function DashboardContent({ userId, userName }: DashboardContentP
                         color="primary"
                         variant="underlined"
                         selectedKey={activeTab}
-                        onSelectionChange={(key) => setActiveTab(key as string)}
+                        onSelectionChange={(key) => router.push(`?tab=${key}`)}
                         classNames={{
                             tabList: "gap-6 justify-end",
                             tab: "py-3 cursor-pointer",

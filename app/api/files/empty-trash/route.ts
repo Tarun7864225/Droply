@@ -56,7 +56,8 @@ export async function DELETE() {
               });
 
               if (searchResults && searchResults.length > 0) {
-                await imagekit.deleteFile((searchResults[0] as any).fileId);
+                const result = searchResults[0];
+                if("fileId" in result) await imagekit.deleteFile(result.fileId);
               } else {
                 await imagekit.deleteFile(imagekitFileId);
               }
