@@ -56,7 +56,7 @@ export default async function Home() {
 
                     <div className="flex justify-center">
                             <div className="inset-0 flex items-center justify-center">
-                                <Image src="/one.png" alt="two" height={1000} width={400} className=" shadow-md" />
+                                <Image src="/One.png" alt="two" height={800} width={400} className="shadow-md" />
                             </div>
                     </div>
                 </div>
