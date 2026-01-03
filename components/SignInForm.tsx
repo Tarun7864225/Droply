@@ -13,6 +13,7 @@ import { Card, CardBody, CardHeader, CardFooter } from "@heroui/card";
 import { Divider } from "@heroui/divider";
 import { Mail, Lock, AlertCircle, Eye, EyeOff } from "lucide-react";
 import { signInSchema } from "@/schemas/signInSchema";
+import { Loader } from "./loader";
 
 export default function SignInForm() {
     const router = useRouter();
@@ -33,6 +34,8 @@ export default function SignInForm() {
             password: "",
         },
     });
+
+    while(isSubmitting) return <Loader/>
 
     const onSubmit = async (data: z.infer<typeof signInSchema>) => {
         if (!isLoaded) return;

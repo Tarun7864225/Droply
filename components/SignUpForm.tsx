@@ -20,6 +20,7 @@ import {
     EyeOff,
 } from "lucide-react";
 import { signUpSchema } from "@/schemas/signUpSchema";
+import { Loader } from "./loader";
 
 export default function SignUpForm() {
     const router = useRouter();
@@ -41,6 +42,8 @@ export default function SignUpForm() {
             passwordConfirmation: "",
         },
     });
+
+    while(isSubmitting) return <Loader/>;
 
     const onSubmit = async (data: z.infer<typeof signUpSchema>) => {
         if (!isLoaded) return;
@@ -128,8 +131,7 @@ export default function SignUpForm() {
                             />
                         </div>
 
-                        <Button type="submit" isLoading={isSubmitting}
-                            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium shadow-sm"   
+                        <Button type="submit" isLoading={isSubmitting} className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium shadow-sm"   
                         >
                             {isSubmitting ? "Verifying..." : "Verify Email"}
                         </Button>
