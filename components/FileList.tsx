@@ -34,6 +34,7 @@ interface FileListProps {
 
 export default function FileList({
   userId,
+  refreshTrigger=0,
   onFolderChange,
 }: FileListProps) {
   const [files, setFiles] = useState<FileType[]>([]);
@@ -67,7 +68,7 @@ export default function FileList({
 
   useEffect(() => {
     fetchFiles();
-  },[fetchFiles]);
+  },[refreshTrigger,fetchFiles]);
 
   const filteredFiles = useMemo(() => {
     switch (activeTab) {

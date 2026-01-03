@@ -42,6 +42,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
       isOpen={isOpen}
       onOpenChange={onOpenChange}
       backdrop="blur"
+      placement="center"
       classNames={{
         base: "bg-white border border-gray-200 shadow-xl rounded-xl",
         header: "px-6 py-4 border-b border-gray-200",
@@ -73,11 +74,11 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
           <p className="text-sm leading-relaxed">{description}</p>
         </ModalBody>
 
-        <ModalFooter>
+        <ModalFooter className="flex flex-row justify-between items-center">
           <Button
             variant="flat"
             color="default"
-            className="min-w-[96px]"
+            className="min-w-[96px] text-black"
             onClick={() => onOpenChange(false)}
           >
             {cancelText}
@@ -85,7 +86,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
 
           <Button
             color={confirmColor}
-            className="min-w-[140px] font-medium"
+            className="min-w-[140px] font-medium text-black"
             startContent={Icon && <Icon className="h-4 w-4" />}
             onClick={() => {
               onConfirm();

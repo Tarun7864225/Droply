@@ -228,6 +228,7 @@ export default function FileUploadForm({
         onOpenChange={setFolderModalOpen}
         hideCloseButton
         backdrop="blur"
+        placement="center"
         classNames={{
           base: "border border-gray-300 bg-white rounded-xl",
           header: "border-b border-gray-300",
@@ -237,12 +238,12 @@ export default function FileUploadForm({
         <ModalContent>
           <ModalHeader className="flex items-center gap-1">
             <FolderPlus className="h-5 w-5 text-blue-500" />
-            <span className="font-semibold">New Folder</span>
+            <span className="font-semibold text-black">New Folder</span>
           </ModalHeader>
           <ModalBody>
             <div className="space-y-4">
               <p className="text-sm text-gray-600">Enter a name for your folder:</p>
-              <Input type="text" placeholder=" Folder Name" value={folderName} onChange={(e) => setFolderName(e.target.value)} autoFocus/>
+              <Input type="text" className="text-black" placeholder=" Folder Name" value={folderName} onChange={(e) => setFolderName(e.target.value)} autoFocus classNames={{ input: [ "focus:outline-none" ] }}/>
             </div>
           </ModalBody>
           <ModalFooter className="flex justify-end gap-2">

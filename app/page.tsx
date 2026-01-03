@@ -40,9 +40,7 @@ export default async function Home() {
                                 <Link href="/dashboard">
                                     <Button
                                         size="lg"
-                                        className="bg-blue-600 hover:bg-blue-700 text-white shadow transition-all"
-                                        endContent={<ArrowRight className="h-4 w-4" />}
-                                    >
+                                        className="bg-blue-600 hover:bg-blue-700 text-white shadow transition-all">
                                         Go to Dashboard
                                     </Button>
                                 </Link>
@@ -124,7 +122,7 @@ export default async function Home() {
                         </SignedOut>
                         <SignedIn>
                             <Link href="/dashboard">
-                                <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white shadow transition-all" endContent={<ArrowRight className="h-4 w-4" />}>
+                                <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white shadow transition-all">
                                     Go to Dashboard
                                 </Button>
                             </Link>
